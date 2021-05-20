@@ -18,7 +18,7 @@ class Greeting {
             level = LogLevel.HEADERS
             logger = object : Logger {
                 override fun log(message: String) {
-                    Napier.v(tag = "HTTP Client test", message = message)
+                    Napier.v(tag = "HTTP Client", message = message)
                 }
             }
         }

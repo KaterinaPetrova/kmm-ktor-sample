@@ -1,12 +1,15 @@
 package com.jetbrains.kmmktor2
 
-import com.github.aakira.napier.Napier
+import io.github.aakira.napier.Napier
+import io.ktor.client.call.body
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.get
 import kotlinx.serialization.Serializable
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
-import io.ktor.client.features.logging.*
-import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 
 @Serializable
 data class Hello(
@@ -22,9 +25,10 @@ class Greeting {
                 }
             }
         }
-        install(JsonFeature) {
-            val json = Json { ignoreUnknownKeys = true }
-            serializer = KotlinxSerializer(json)
+        install(ContentNegotiation) {
+            json(Json {
+                ignoreUnknownKeys = true
+            })
         }
     }.also { initLogger() }
 
@@ -34,6 +38,6 @@ class Greeting {
     }
 
     private suspend fun getHello(): List<Hello> {
-        return httpClient.get("https://gitcdn.link/cdn/KaterinaPetrova/greeting/7d47a42fc8d28820387ac7f4aaf36d69e434adc1/greetings.json")
+        return httpClient.get("https://gitcdn.link/cdn/KaterinaPetrova/greeting/7d47a42fc8d28820387ac7f4aaf36d69e434adc1/greetings.json").body()
     }
 }

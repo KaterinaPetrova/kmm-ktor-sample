@@ -38,6 +38,6 @@ class Greeting {
     }
 
     private suspend fun getHello(): List<Hello> {
-        return httpClient.get("https://gitcdn.link/cdn/KaterinaPetrova/greeting/7d47a42fc8d28820387ac7f4aaf36d69e434adc1/greetings.json").body()
+        return httpClient.get("https://cdn.jsdelivr.net/gh/KaterinaPetrova/greeting@main/greetings.json").body()
     }
 }

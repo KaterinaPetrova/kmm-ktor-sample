@@ -31,8 +31,6 @@ class MainActivity : AppCompatActivity() {
 
             Toast.makeText(this@MainActivity, "hello2", Toast.LENGTH_LONG).show()
         }
-
-
     }
 
     override fun onDestroy() {

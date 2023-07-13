@@ -1,5 +1,5 @@
 import SwiftUI
-import shared
+import KmmKtor
 
 struct ContentView: View {
     let greeting = Greeting()

@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.android.application)
 }
 
 dependencies {
@@ -15,9 +15,9 @@ dependencies {
 android {
     defaultConfig {
         applicationId = "com.jetbrains.kmmktor2.android"
-        compileSdk = 33
-        targetSdk = 33
-        minSdk = 21
+        compileSdk = (findProperty("android.compileSdk") as String).toInt()
+        targetSdk = (findProperty("android.targetSdk") as String).toInt()
+        minSdk = (findProperty("android.minSdk") as String).toInt()
         versionCode = 1
         versionName = "1.0"
     }

@@ -1,13 +1,11 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
-    targetHierarchy.default()
-
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
@@ -25,7 +23,7 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.napier)
                 implementation(libs.ktor.core)
@@ -34,12 +32,12 @@ kotlin {
                 implementation(libs.ktor.serialization.kotlinx.json)
             }
         }
-        val androidMain by getting {
+        androidMain {
             dependencies {
                 implementation(libs.ktor.client.okhttp)
             }
         }
-        val iosMain by getting {
+        iosMain {
             dependencies {
                 implementation(libs.ktor.client.ios)
             }

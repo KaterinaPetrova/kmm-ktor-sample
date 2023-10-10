@@ -1,15 +1,14 @@
 [versions]
-ktor = "2.3.1"
+ktor = "2.3.5"
 napier = "2.6.1"
-kotlinx-serialization = "1.5.1"
-android-material = "1.9.0"
+android-material = "1.10.0"
 androidx-appcompat = "1.6.1"
 androidx-constraintlayout = "2.1.4"
-kotlinx-coroutines = "1.7.1"
+kotlinx-coroutines = "1.7.3"
 desugar-jdk-libs = "2.0.3"
-plugin-android = "8.0.2"
-plugin-gver = "0.47.0"
-plugin-kotlin = "1.8.21"
+plugin-android = "8.1.2"
+plugin-gver = "0.48.0"
+plugin-kotlin = "1.9.20-Beta2"
 
 [libraries]
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
@@ -24,16 +23,13 @@ napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
-plugin-android = { module = "com.android.tools.build:gradle", version.ref = "plugin-android" }
-plugin-gver = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "plugin-gver" }
-plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "plugin-kotlin" }
-plugin-kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "plugin-kotlin" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 
-[bundles]
-plugins = [
-    "plugin-android",
-    "plugin-gver",
-    "plugin-kotlin",
-    "plugin-kotlin-serialization",
-]
+[plugins]
+
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "plugin-kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "plugin-kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "plugin-kotlin" }
+android-application = { id = "com.android.application", version.ref = "plugin-android" }
+android-library = { id = "com.android.library", version.ref = "plugin-android" }
+dependencyUpdates = { id = "com.github.ben-manes.versions", version.ref = "plugin-gver" }

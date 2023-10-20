@@ -5,6 +5,18 @@ import android.os.Bundle
 import com.jetbrains.kmmktor2.Greeting
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.*
 
 
@@ -14,22 +26,27 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                var text by remember {
+                    mutableStateOf("Loading...")
+                }
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = "Loading..."
+                Text(text)
 
-        Toast.makeText(this, "hello", Toast.LENGTH_LONG).show()
-        mainScope.launch {
-            kotlin.runCatching {
-                greeting.greeting()
-            }.onSuccess {
-                tv.text = it
-            }.onFailure {
-                tv.text = it.localizedMessage
+                LaunchedEffect(Unit) {
+                    runCatching {
+                        greeting.greeting()
+                    }.onSuccess {
+                        text = it
+                    }.onFailure {
+                        text = it.localizedMessage
+                    }
+                }
             }
-
-            Toast.makeText(this@MainActivity, "hello2", Toast.LENGTH_LONG).show()
         }
     }
 

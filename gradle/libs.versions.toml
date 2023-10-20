@@ -4,11 +4,13 @@ napier = "2.6.1"
 android-material = "1.10.0"
 androidx-appcompat = "1.6.1"
 androidx-constraintlayout = "2.1.4"
+compose-bom = "2023.10.00"
+compose-compiler = "1.5.4-dev-k1.9.20-RC-1edce5fd625"
 kotlinx-coroutines = "1.7.3"
 desugar-jdk-libs = "2.0.3"
 plugin-android = "8.1.2"
 plugin-gver = "0.48.0"
-plugin-kotlin = "1.9.20-Beta2"
+plugin-kotlin = "1.9.20-RC"
 
 [libraries]
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
@@ -24,9 +26,11 @@ android-material = { module = "com.google.android.material:material", version.re
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 
 [plugins]
-
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "plugin-kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "plugin-kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "plugin-kotlin" }
